@@ -1,0 +1,313 @@
+/* entry模块制作 */
+.entry {
+    height: 500px;
+    background-color: #f5f5f5;
+}
+
+.entry .w {
+    position: relative;
+    height: 100%;
+    /* background: url(../uploads/banner1.png) no-repeat center center; */
+}
+
+.category {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 250px;
+    height: 500px;
+    background: rgba(0, 0, 0, .42);
+}
+
+.category ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 12px 0 29px;
+    color: #fff;
+}
+
+.category ul li:hover {
+    background-color: #00be9a;
+}
+
+.category ul li a {
+    color: #fff;
+    font-size: 14px;
+}
+
+.category ul li a:first-child {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.banner {
+    position: relative;
+}
+
+.banner .circle {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.banner .circle li {
+    width: 14px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    margin: 0 8px;
+}
+
+.banner .circle li:hover {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, .5);
+    background-color: #fff;
+}
+
+/* 新鲜好物模块 */
+.box-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 112px;
+    line-height: 50px;
+}
+
+.box-hd h2 {
+    font-size: 30px;
+}
+
+.box-hd h2 small {
+    font-size: 16px;
+    color: #a1a1a1;
+    margin-left: 30px;
+}
+
+.box-hd a {
+    font-size: 16px;
+    color: #a1a1a1;
+}
+
+.box-bd ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box-bd ul li {
+    width: 304px;
+    height: 404px;
+    text-align: center;
+    background-color: #EEF9F4;
+}
+
+.box-bd ul li a {
+    display: block;
+    height: 100%;
+}
+
+.box-bd ul li img {
+    width: 304px;
+    height: 304px;
+}
+
+.box-bd ul li .title {
+    margin: 18px 0 15px;
+    font-size: 20px;
+    padding: 0 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.box-bd ul li .price {
+    font-size: 22px;
+    color: #aa2113;
+}
+
+.box-bd ul li .price small {
+    font-size: 18px;
+}
+
+/* 人气推荐模块 */
+.hot .box-bd ul li {
+    background-color: #fff;
+}
+
+.hot {
+    margin-bottom: 60px;
+}
+
+.hot .box-bd .price {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #a1a1a1;
+}
+
+.brand {
+    background-color: #F5F5F5;
+    padding: 40px 0;
+}
+
+.brand .box-hd {
+    display: block;
+    height: 82px;
+}
+
+.brand .box-hd h2 {
+    height: 42px;
+    line-height: 42px;
+}
+
+.brand-page {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    height: 20px;
+    line-height: 20px;
+    text-align: right;
+}
+
+.brand-page img {
+    width: 20px;
+}
+
+.brand .box-bd li {
+    width: 244px;
+    height: 306px;
+}
+
+
+.brand .box-bd li img {
+    width: 244px;
+    height: 306px;
+}
+
+/* 服饰模块 */
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 102px;
+    padding-top: 20px;
+}
+
+.head h2 {
+    font-size: 30px;
+}
+
+.head .head-right {
+    display: flex;
+}
+
+.head .head-right ul {
+    display: flex;
+    gap: 10px;
+}
+
+.head .head-right .more {
+    font-size: 16px;
+    color: #a1a1a1;
+    margin-left: 60px;
+}
+
+.head .head-right ul a {
+    padding: 3px 8px;
+}
+
+.head .head-right ul a:hover {
+    color: #fff;
+    border-radius: 3px;
+    background-color: #00be9a;
+}
+
+.body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body .body-l {
+    width: 248px;
+    height: 610px;
+}
+
+.body .body-r {
+    display: flex;
+    flex-wrap: wrap;
+    width: 968px;
+    height: 610px;
+}
+
+.body .body-r li {
+    width: 242px;
+    height: 305px;
+    padding: 10px 21px 0;
+}
+
+.body .body-r li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 19px;
+}
+
+.body .body-r li img {
+    width: 200px;
+    height: 180px;
+}
+
+.body .body-r li .title {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.body .body-r li .price {
+    margin-top: 12px;
+    font-size: 22px;
+    color: #af2f22
+}
+
+.body .body-r li small {
+    font-size: 16px;
+}
+
+/* 让单行文本溢出显示省略号，做一个类 */
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news {
+    margin-bottom: 40px;
+}
+
+.news ul {
+    display: flex;
+    gap: 12px;
+}
+
+.news ul li {
+    flex: 1;
+    height: 355px;
+}
+
+.news ul li img {
+    width: 100%;
+}
+
+.news .con {
+    height: 67px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.news .con .like {
+    margin-right: 20px;
+}
