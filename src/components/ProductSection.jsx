@@ -1,4 +1,5 @@
 import { useCart } from '../context/CartContext'
+import LazyImage from './LazyImage'
 
 export default function ProductSection({ title, subtitle, products, showPrice = true, className = '' }) {
   const { viewProduct, addToCart } = useCart()
@@ -25,7 +26,7 @@ export default function ProductSection({ title, subtitle, products, showPrice = 
                 className="block w-full h-full leading-[19px] cursor-pointer p-4"
                 onClick={() => viewProduct(product)}
               >
-                <img
+                <LazyImage
                   src={product.image}
                   alt={product.name}
                   className="w-[200px] h-[200px] object-cover mx-auto mb-4 rounded-lg"

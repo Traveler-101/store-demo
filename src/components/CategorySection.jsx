@@ -1,4 +1,5 @@
 import { useCart } from '../context/CartContext'
+import LazyImage from './LazyImage'
 
 export default function CategorySection({ title, tabs, products, leftImage }) {
   const { viewProduct, addToCart } = useCart()
@@ -30,13 +31,13 @@ export default function CategorySection({ title, tabs, products, leftImage }) {
       </div>
       <div className="body flex justify-between flex-col lg:flex-row">
         <a href="#" className="body-l w-[248px] lg:w-[248px] md:w-full sm:w-full h-[610px] lg:h-[610px] md:h-[300px] sm:h-[200px] mb-4 lg:mb-0">
-          <img src={leftImage} alt="" className="w-full h-full object-cover rounded-lg" />
+          <LazyImage src={leftImage} alt="" className="w-full h-full object-cover rounded-lg" />
         </a>
         <ul className="body-r flex flex-wrap w-[968px] lg:w-[968px] md:w-full sm:w-full h-[610px] lg:h-[610px] md:h-auto sm:h-auto">
           {products.map((product) => (
             <li key={product.id} className="w-[242px] lg:w-[242px] md:w-[calc(50%-8px)] sm:w-full h-[305px] lg:h-[305px] md:h-auto sm:h-auto p-[10px_21px_0] text-center relative bg-white rounded-lg overflow-hidden">
               <div className="block w-full h-full leading-[19px] cursor-pointer" onClick={() => viewProduct(product)}>
-                <img
+                <LazyImage
                   src={product.image}
                   alt={product.name}
                   className="w-[200px] lg:w-[200px] md:w-full sm:w-full h-[180px] lg:h-[180px] md:h-[150px] sm:h-[120px] object-cover mx-auto rounded-lg mb-4"

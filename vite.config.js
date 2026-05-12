@@ -8,8 +8,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'uploads',
-          dest: '',
+          src: 'public/uploads',
+          dest: 'uploads',
         },
       ],
     }),
@@ -20,4 +20,5 @@ export default defineConfig({
     },
   },
   base: '/store-demo/',
+  publicDir: 'public',
 })
