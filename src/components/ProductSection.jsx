@@ -1,7 +1,8 @@
+import { memo } from 'react'
 import { useCart } from '../context/CartContext'
 import LazyImage from './LazyImage'
 
-export default function ProductSection({ title, subtitle, products, showPrice = true, className = '' }) {
+function ProductSection({ title, subtitle, products, showPrice = true, className = '' }) {
   const { viewProduct, addToCart } = useCart()
 
   return (
@@ -17,21 +18,24 @@ export default function ProductSection({ title, subtitle, products, showPrice = 
       </div>
       <div className="box-bd">
         <ul className="flex justify-between items-center flex-wrap gap-4 lg:flex-nowrap">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <li
               key={product.id}
-              className={`w-[304px] lg:w-[304px] md:w-[calc(50%-8px)] sm:w-full h-[404px] lg:h-[404px] md:h-[350px] sm:h-auto text-center relative ${showPrice ? 'bg-[#EEF9F4]' : 'bg-white'} rounded-lg overflow-hidden`}
+              className={`product-card product-card-hover w-[304px] lg:w-[304px] md:w-[calc(50%-8px)] sm:w-full h-[404px] lg:h-[404px] md:h-[350px] sm:h-auto text-center relative ${showPrice ? 'bg-[#EEF9F4]' : 'bg-white'} rounded-lg overflow-hidden fade-in-up`}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <div
                 className="block w-full h-full leading-[19px] cursor-pointer p-4"
                 onClick={() => viewProduct(product)}
               >
-                <LazyImage
-                  src={product.image}
-                  alt={product.name}
-                  className="w-[200px] h-[200px] object-cover mx-auto mb-4 rounded-lg"
-                />
-                <h3 className="title text-base mb-2">{product.name}</h3>
+                <div className="overflow-hidden rounded-lg mb-4">
+                  <LazyImage
+                    src={product.image}
+                    alt={product.name}
+                    className="product-image w-[200px] h-[200px] object-cover mx-auto"
+                  />
+                </div>
+                <h3 className="title text-base mb-2 transition-colors hover:text-primary">{product.name}</h3>
                 <p className="text-sm text-[#a1a1a1] mb-2">{product.spec}</p>
                 {showPrice && (
                   <p className="price text-[22px] text-[#af2f22] mb-2">
@@ -47,7 +51,7 @@ export default function ProductSection({ title, subtitle, products, showPrice = 
                       e.stopPropagation()
                       addToCart(product)
                     }}
-                    className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors text-sm w-full"
+                    className="btn-primary bg-primary text-white px-4 py-2 rounded-lg text-sm w-full transform transition-all duration-200 hover:shadow-lg"
                   >
                     加入购物车
                   </button>
@@ -60,3 +64,5 @@ export default function ProductSection({ title, subtitle, products, showPrice = 
     </div>
   )
 }
+
+export default memo(ProductSection)

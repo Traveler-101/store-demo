@@ -1,22 +1,45 @@
-import { useSearch } from './context/SearchContext'
-import Shortcut from './components/Shortcut'
-import Header from './components/Header'
-import Entry from './components/Entry'
-import ProductSection from './components/ProductSection'
-import Brand from './components/Brand'
-import CategorySection from './components/CategorySection'
-import NewsSection from './components/NewsSection'
-import Footer from './components/Footer'
-import ProductModal from './components/ProductModal'
-import LoginModal from './components/LoginModal'
-import RegisterModal from './components/RegisterModal'
-import SearchResult from './components/SearchResult'
+import { lazy, Suspense } from 'react'
+import { SearchProvider } from './context/SearchContext'
 import { CartProvider } from './context/CartContext'
 import { UserProvider } from './context/UserContext'
-import { SearchProvider } from './context/SearchContext'
+import { useSearch } from './context/SearchContext'
 import { freshGoods, hotRecommend, freshProducts, clothesProducts, kitchenProducts, homeProducts } from './data/products'
 
+// 懒加载组件
+const Shortcut = lazy(() => import('./components/Shortcut'))
+const Header = lazy(() => import('./components/Header'))
+const Entry = lazy(() => import('./components/Entry'))
+const ProductSection = lazy(() => import('./components/ProductSection'))
+const Brand = lazy(() => import('./components/Brand'))
+const CategorySection = lazy(() => import('./components/CategorySection'))
+const NewsSection = lazy(() => import('./components/NewsSection'))
+const Footer = lazy(() => import('./components/Footer'))
+const ProductModal = lazy(() => import('./components/ProductModal'))
+const LoginModal = lazy(() => import('./components/LoginModal'))
+const RegisterModal = lazy(() => import('./components/RegisterModal'))
+const SearchResult = lazy(() => import('./components/SearchResult'))
+const PageSkeleton = lazy(() => import('./components/Skeleton'))
+
 function AppContent() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-100 animate-pulse">
+      <div className="h-[132px] bg-white w-full"></div>
+      <div className="w px-4 py-8">
+        <div className="w-full h-[500px] bg-gray-200 rounded-lg mb-8"></div>
+        <div className="h-8 bg-gray-200 rounded w-48 mb-6"></div>
+        <div className="flex justify-between flex-wrap gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="w-[304px] h-[404px] bg-[#EEF9F4] rounded-lg"></div>
+          ))}
+        </div>
+      </div>
+    </div>}>
+      <AppContentInner />
+    </Suspense>
+  )
+}
+
+function AppContentInner() {
   const { isSearching } = useSearch()
 
   if (isSearching) {
@@ -83,16 +106,14 @@ function AppContent() {
   )
 }
 
-function App() {
+export default function App() {
   return (
-    <UserProvider>
-      <CartProvider>
-        <SearchProvider>
+    <SearchProvider>
+      <UserProvider>
+        <CartProvider>
           <AppContent />
-        </SearchProvider>
-      </CartProvider>
-    </UserProvider>
+        </CartProvider>
+      </UserProvider>
+    </SearchProvider>
   )
 }
-
-export default App

@@ -1,7 +1,8 @@
+import { memo } from 'react'
 import { useCart } from '../context/CartContext'
 import LazyImage from './LazyImage'
 
-export default function CategorySection({ title, tabs, products, leftImage }) {
+function CategorySection({ title, tabs, products, leftImage }) {
   const { viewProduct, addToCart } = useCart()
 
   return (
@@ -14,7 +15,7 @@ export default function CategorySection({ title, tabs, products, leftImage }) {
               <li key={index}>
                 <a
                   href="#"
-                  className="px-2 py-[3px] hover:text-white hover:bg-primary hover:rounded-[3px] transition-all"
+                  className="px-2 py-[3px] hover:text-white hover:bg-primary hover:rounded-[3px] transition-all duration-200"
                 >
                   {tab}
                 </a>
@@ -30,19 +31,25 @@ export default function CategorySection({ title, tabs, products, leftImage }) {
         </div>
       </div>
       <div className="body flex justify-between flex-col lg:flex-row">
-        <a href="#" className="body-l w-[248px] lg:w-[248px] md:w-full sm:w-full h-[610px] lg:h-[610px] md:h-[300px] sm:h-[200px] mb-4 lg:mb-0">
+        <a href="#" className="body-l product-card w-[248px] lg:w-[248px] md:w-full sm:w-full h-[610px] lg:h-[610px] md:h-[300px] sm:h-[200px] mb-4 lg:mb-0">
           <LazyImage src={leftImage} alt="" className="w-full h-full object-cover rounded-lg" />
         </a>
         <ul className="body-r flex flex-wrap w-[968px] lg:w-[968px] md:w-full sm:w-full h-[610px] lg:h-[610px] md:h-auto sm:h-auto">
-          {products.map((product) => (
-            <li key={product.id} className="w-[242px] lg:w-[242px] md:w-[calc(50%-8px)] sm:w-full h-[305px] lg:h-[305px] md:h-auto sm:h-auto p-[10px_21px_0] text-center relative bg-white rounded-lg overflow-hidden">
+          {products.map((product, index) => (
+            <li 
+              key={product.id} 
+              className="product-card product-card-hover w-[242px] lg:w-[242px] md:w-[calc(50%-8px)] sm:w-full h-[305px] lg:h-[305px] md:h-auto sm:h-auto p-[10px_21px_0] text-center relative bg-white rounded-lg overflow-hidden fade-in-up"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
               <div className="block w-full h-full leading-[19px] cursor-pointer" onClick={() => viewProduct(product)}>
-                <LazyImage
-                  src={product.image}
-                  alt={product.name}
-                  className="w-[200px] lg:w-[200px] md:w-full sm:w-full h-[180px] lg:h-[180px] md:h-[150px] sm:h-[120px] object-cover mx-auto rounded-lg mb-4"
-                />
-                <h3 className="title mt-[10px] text-base ellipsis">{product.name}</h3>
+                <div className="overflow-hidden rounded-lg mb-4">
+                  <LazyImage
+                    src={product.image}
+                    alt={product.name}
+                    className="product-image w-[200px] lg:w-[200px] md:w-full sm:w-full h-[180px] lg:h-[180px] md:h-[150px] sm:h-[120px] object-cover mx-auto"
+                  />
+                </div>
+                <h3 className="title mt-[10px] text-base ellipsis transition-colors hover:text-primary">{product.name}</h3>
                 <p className="text-sm text-[#a1a1a1]">{product.spec}</p>
                 <p className="text-sm text-[#a1a1a1]">{product.tag}</p>
                 <p className="price mt-[12px] text-[22px] text-[#af2f22]">
@@ -56,7 +63,7 @@ export default function CategorySection({ title, tabs, products, leftImage }) {
                     e.stopPropagation()
                     addToCart(product)
                   }}
-                  className="bg-primary text-white px-3 py-1 rounded hover:bg-opacity-90 transition-colors text-xs w-full"
+                  className="btn-primary bg-primary text-white px-3 py-1 rounded text-xs w-full transform transition-all duration-200 hover:shadow-lg"
                 >
                   加入购物车
                 </button>
@@ -68,3 +75,5 @@ export default function CategorySection({ title, tabs, products, leftImage }) {
     </div>
   )
 }
+
+export default memo(CategorySection)
