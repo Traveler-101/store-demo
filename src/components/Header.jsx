@@ -13,8 +13,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="header w h-[132px] flex justify-between items-center flex-wrap lg:flex-nowrap sticky top-0 z-50 bg-white">
-        <div className="logo w-[200px] h-[88px] lg:w-[200px]">
+      <header className="header w h-auto lg:h-[132px] flex justify-between items-center flex-wrap lg:flex-nowrap sticky top-0 z-50 bg-white px-2 lg:px-0">
+        <div className="logo w-[140px] h-[60px] lg:w-[200px] lg:h-[88px] flex-shrink-0">
           <h1 className="w-full h-full">
             <a
               href="/"
@@ -27,39 +27,42 @@ export default function Header() {
         </div>
 
         <button
-          className="lg:hidden text-2xl p-2"
+          className="lg:hidden text-2xl p-2 ml-auto mr-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <i className="iconfont icon-menu"></i>
         </button>
 
-        <ul className={`nav flex gap-[48px] lg:flex hidden ${mobileMenuOpen ? 'flex flex-col absolute top-[132px] left-0 right-0 bg-white shadow-lg z-50 p-4' : ''}`}>
-          {navItems.map((item, index) => (
-            <li key={index} className={mobileMenuOpen ? 'py-2' : ''}>
-              <a
-                href="#"
-                className={`block h-[40px] leading-[40px] text-center hover:text-secondary border-b-2 border-transparent hover:border-secondary transition-all ${mobileMenuOpen ? 'text-lg' : ''}`}
-                onClick={() => {
-                  setMobileMenuOpen(false)
-                  if (isSearching) exitSearch()
-                }}
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className={`nav-container w-full lg:w-auto ${mobileMenuOpen ? 'block' : 'hidden'} lg:block absolute lg:relative top-full lg:top-auto left-0 right-0 bg-white lg:bg-transparent shadow-lg lg:shadow-none z-50`}>
+          <ul className="flex flex-col lg:flex-row gap-2 lg:gap-[48px] p-4 lg:p-0">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <a
+                  href="#"
+                  className="block py-2 lg:h-[40px] lg:leading-[40px] text-center hover:text-secondary border-b border-gray-100 lg:border-b-2 lg:border-transparent lg:hover:border-secondary transition-all text-base"
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    if (isSearching) exitSearch()
+                  }}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="search relative hidden md:block">
+        <div className="search w-full lg:w-auto order-last lg:order-none hidden md:block px-2 lg:px-4 py-2 lg:py-0">
           <SearchInput />
         </div>
-        <div className="car relative cursor-pointer" onClick={() => setCartOpen(true)}>
+        
+        <div className="car relative cursor-pointer flex-shrink-0 pr-2 lg:pr-0" onClick={() => setCartOpen(true)}>
           {cartCount > 0 && (
-            <span className="absolute top-0 left-[20px] px-[5px] py-[2px] rounded-[8px] bg-[#e26237] text-white text-xs">
-              {cartCount}
+            <span className="absolute -top-1 left-[12px] lg:left-[20px] px-[5px] py-[2px] rounded-[8px] bg-[#e26237] text-white text-xs">
+              {cartCount > 99 ? '99+' : cartCount}
             </span>
           )}
-          <i className="iconfont icon-cart-full text-[40px] mr-[15px]"></i>
+          <i className="iconfont icon-cart-full text-[28px] lg:text-[40px] mr-[10px] lg:mr-[15px]"></i>
         </div>
       </header>
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />

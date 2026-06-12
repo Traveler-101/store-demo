@@ -86,24 +86,26 @@ export function SearchProvider({ children }) {
       result = result.filter(p => p.spec && selectedSpecs.includes(p.spec))
     }
 
+    // 创建数组副本进行排序，避免修改原数组
+    const sortedResult = [...result]
     switch (sortBy) {
       case 'price-asc':
-        result.sort((a, b) => a.price - b.price)
+        sortedResult.sort((a, b) => a.price - b.price)
         break
       case 'price-desc':
-        result.sort((a, b) => b.price - a.price)
+        sortedResult.sort((a, b) => b.price - a.price)
         break
       case 'sales':
-        result.sort((a, b) => (b.sales || 0) - (a.sales || 0))
+        sortedResult.sort((a, b) => (b.sales || 0) - (a.sales || 0))
         break
       case 'rating':
-        result.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+        sortedResult.sort((a, b) => (b.rating || 0) - (a.rating || 0))
         break
       default:
         break
     }
 
-    return result
+    return sortedResult
   }, [keyword, priceRange, selectedBrands, selectedOrigins, selectedSpecs, sortBy, allProducts])
 
   const addToHistory = (word) => {

@@ -43,7 +43,7 @@ export default function Footer() {
   return (
     <div className="footer bg-[#f5f5f5] py-8 lg:py-0 lg:h-[588px]">
       <div className="w">
-        <div className="slogan border-b border-[#e8e8e8] lg:h-[178px]">
+        {/* <div className="slogan border-b border-[#e8e8e8] lg:h-[178px]">
           <ul className="flex justify-evenly items-center h-full flex-wrap lg:flex-nowrap">
             {slogans.map((slogan, index) => (
               <li key={index} className="flex items-center p-4 lg:p-0">
@@ -55,7 +55,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
         <div className="service flex justify-between mt-[60px] lg:mt-[60px] md:mt-[40px] sm:mt-[20px] flex-col lg:flex-row">
           <div className="service-left flex gap-[84px] lg:gap-[84px] md:gap-[40px] sm:gap-[20px] flex-wrap lg:flex-nowrap">
             {services.map((service, index) => (
